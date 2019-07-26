@@ -4,7 +4,8 @@ The code here implements a fit to the radio sky in spherical harmonic space. The
 
 T_CMB and T_EG are first subtracted from the data. The models that can then be run include:
 1. T_BKG + T_disk
-2. T_BKG + T_disk + T_halo
+2. T_BKG + T_halo
+3. T_BKG + T_disk + T_halo
 
 The code here includes:
 * **const.py**: includes constants from other code, which are read into each module.
@@ -12,7 +13,8 @@ The code here includes:
 * **ModelDefinitions.py**: the only addition here is the *prep_data* function to prepare the map spherical harmonics, and the *sim_map* function to make a simulated map.
 * **runmcmc.py**: runs the mcmc, with a few other features. See comments in code.
 * **plot_samples.py**: makes plots of the chains, and a triangle plot.
+* **plot_results.ipynb**: notebook for full analysis of an MCMC result. 
 * **lm_idx.npy**: contains the idices of the spherical harmonic series that are used for fitting.
 
-
+To run, consider creating a *results* directory - this is currently assumed. Otherwise follow the comments in *runmcmc.py* and *plot_results.ipynb*. 
 
