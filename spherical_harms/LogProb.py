@@ -73,3 +73,26 @@ def lik_disk_halo(param, data):
     lik = np.sum((Alm_model-Alm)**2. / (sig2))
 
     return -lik
+
+
+# ln(likelihood) for model with disk and halo alone
+def lik_disk_halo_nobkg(param, data):
+
+    # get parameters
+    R_disk = param[0]
+    h_disk = param[1]
+    j_disk = param[2]
+    R_halo = param[3]
+    j_halo = param[4]
+
+    # calculate model
+    model = MD.LineOfSightDisk(l, b, d, R_disk, h_disk)*j_disk*(c**2)/(2*k*(nu**2)) + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo*(c**2)/(2*k*(nu**2))
+    Alm_model = ((hp.sphtfunc.map2alm(model,pol=False,gal_cut=b_mask)).real)[lm_idx]
+
+    # get data and noise
+    Alm,sig2 = data
+
+    # get likelihood
+    lik = np.sum((Alm_model-Alm)**2. / (sig2))
+
+    return -lik

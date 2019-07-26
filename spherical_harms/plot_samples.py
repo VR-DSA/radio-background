@@ -1,7 +1,7 @@
 import numpy as np, corner, matplotlib.pyplot as plt, sys, pylab
 
 # make triangle plot
-def triangle_plot(chain,labls,sfig='triangle.png'):
+def triangle_plot(chain,labls,sfig='results/triangle.png'):
 
     samples = chain.reshape((-1,len(labls)))
 
@@ -10,7 +10,7 @@ def triangle_plot(chain,labls,sfig='triangle.png'):
     fig.savefig(sfig)
 
     
-def plot_sampler(plotarr,labls,filename='sampler.png'):
+def plot_sampler(plotarr,labls,filename='results/sampler.png'):
 
     # reshape
     ndim = plotarr.shape[2]
@@ -34,9 +34,9 @@ def plot_sampler(plotarr,labls,filename='sampler.png'):
 
 
 d = np.load(sys.argv[1])['samples']
-d = d[:,500:,:]
-#labls = ['T_bkg','R_disk','h_disk','j_disk','R_halo','j_halo']
-labls = ['T_bkg','R_disk','h_disk','j_disk']
+d = d[:,200:,:]
+
+labls = ['R_disk','h_disk','j_disk','R_halo','j_halo']
 triangle_plot(d,labls)
 plot_sampler(d,labls)
 
